@@ -1,0 +1,78 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <!-- This line makes the page scale correctly on phones -->
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Twitter Clone</title>
+  <!-- Connect our CSS file -->
+  <link rel="stylesheet" href="style.css">
+</head>
+<body>
+
+  <!-- The whole page is a 3-column grid: nav | feed | who to follow -->
+  <div class="layout">
+
+    <!-- 1. NAVIGATION: a sidebar on desktop, a bottom bar on phones (CSS decides) -->
+    <!-- data-action / data-view are "labels" that script.js reads when you click -->
+    <nav class="nav">
+      <div class="brand">Chirp</div>
+      <button class="nav-btn" data-action="nav" data-view="home">Home</button>
+      <button class="nav-btn" data-action="nav" data-view="profile">Profile</button>
+      <button class="nav-btn" data-action="nav" data-view="ai">Ask AI</button>
+    </nav>
+
+    <!-- 2. MAIN COLUMN -->
+    <main class="main">
+      <header class="topbar"><h2 id="pageTitle">Home</h2></header>
+
+      <!-- Compose box (only visible on the Home view) -->
+      <section id="composeBox" class="compose">
+        <div id="composeAvatar"></div>
+        <div class="compose-right">
+          <textarea id="tweetInput" placeholder="What is happening?"></textarea>
+          <div class="compose-footer">
+            <!-- Live character counter, updated by script.js -->
+            <span id="charCounter">280</span>
+            <button id="tweetBtn" class="primary-btn" disabled>Tweet</button>
+          </div>
+        </div>
+      </section>
+
+      <!-- Profile header (only filled in on the Profile view) -->
+      <section id="profileBox"></section>
+
+      <!-- Spinner or error message goes here -->
+      <div id="status"></div>
+
+      <!-- All the posts are drawn into this div -->
+      <section id="feed"></section>
+    </main>
+
+    <!-- 3. RIGHT COLUMN (hidden on phones) -->
+    <aside class="right">
+      <h3>Who to follow</h3>
+      <div id="whoToFollow"></div>
+    </aside>
+  </div>
+
+  <!-- Floating round AI button, fixed to the bottom-right corner -->
+  <button id="aiButton" data-action="toggleChat">AI</button>
+
+  <!-- AI chat panel (hidden until the button is clicked) -->
+  <div id="chatPanel" class="chat hidden">
+    <div class="chat-header">
+      <strong>Ask AI</strong>
+      <button data-action="toggleChat" class="link-btn">Close</button>
+    </div>
+    <div id="chatMessages" class="chat-messages"></div>
+    <div class="chat-input-row">
+      <input id="chatInput" type="text" placeholder="Ask about any post">
+      <button id="chatSend" class="primary-btn">Send</button>
+    </div>
+  </div>
+
+  <!-- Load our JavaScript LAST so the HTML above already exists -->
+  <script src="script.js"></script>
+</body>
+</html>
